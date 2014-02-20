@@ -1,0 +1,40 @@
+pkgbase = linux-grsrv
+	pkgver = 3.13.3
+	pkgrel = 1
+	url = http://www.kernel.org
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = bc
+	makedepends = kmod
+	options = !strip
+	source = http://www.kernel.org/pub/linux/kernel/v3.x/linux-3.13.tar.xz
+	source = config-3.13-server.i686
+	source = config-3.13-server.x86_64
+	source = linux-grsrv.preset
+	source = http://www.kernel.org/pub/linux/kernel/v3.x/patch-3.13.3.xz
+	source = http://grsecurity.net/test/grsecurity-3.0-3.13.3-201402152204.patch
+	source = http://grsecurity.net/test/grsecurity-3.0-3.13.3-201402152204.patch.sig
+	sha256sums = 4d5e5eee5f276424c32e9591f1b6c971baedc7b49f28ce03d1f48b1e5d6226a2
+	sha256sums = 535445a998b2dad803ae7f00e5062533fbf0ce6c7f4d1cc50dbe495f88e8b17c
+	sha256sums = 098267133dd10ae6d5162a849ef84104c7f943037bd1f4c5f8a4e2ba473a20ee
+	sha256sums = 64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde
+	sha256sums = 6d54f1dcd4d9441644a7ef4445f6633158e666fddaa6f06bb6656ab2ff4509d4
+	sha256sums = 89f1b74533f9223b5e6c8412c971cdd08a6d97be11093568dcf197a426d79530
+	sha256sums = SKIP
+
+pkgname = linux-grsrv
+	pkgdesc = The Linux Kernel and modules, Grsecurity Server Edition
+	install = linux-grsrv.install
+	depends = coreutils
+	depends = kmod>=10
+	depends = mkinitcpio>=0.9
+	optdepends = crda: to set the correct wireless channels of your country
+	optdepends = linux-firmware: when having some hardware needing special firmware
+	provides = linux
+	backup = etc/mkinitcpio.d/linux-grsrv.preset
+
+pkgname = linux-grsrv-headers
+	pkgdesc = Header files and scripts for building modules for linux-grsrv
+	provides = linux-headers
+
