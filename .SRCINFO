@@ -1,6 +1,6 @@
 pkgbase = linux-grsrv
-	pkgver = 3.13.10
-	pkgrel = 2
+	pkgver = 3.14.10
+	pkgrel = 0.2
 	url = http://www.kernel.org
 	arch = i686
 	arch = x86_64
@@ -8,19 +8,19 @@ pkgbase = linux-grsrv
 	makedepends = bc
 	makedepends = kmod
 	options = !strip
-	source = http://www.kernel.org/pub/linux/kernel/v3.x/linux-3.13.tar.xz
-	source = config-3.13-server.i686
-	source = config-3.13-server.x86_64
+	source = http://www.kernel.org/pub/linux/kernel/v3.x/linux-3.14.tar.xz
+	source = config-3.14-server.i686
+	source = config-3.14-server.x86_64
 	source = linux-grsrv.preset
-	source = http://www.kernel.org/pub/linux/kernel/v3.x/patch-3.13.10.xz
-	source = http://grsecurity.net/test/grsecurity-3.0-3.13.10-201404182111.patch
-	source = http://grsecurity.net/test/grsecurity-3.0-3.13.10-201404182111.patch.sig
-	sha256sums = 4d5e5eee5f276424c32e9591f1b6c971baedc7b49f28ce03d1f48b1e5d6226a2
-	sha256sums = 827b3be74673388ee54c210014ec4227ab909360740067763c604e3307170507
-	sha256sums = 80c0a38f50f50bbab8c469d57dd50123558ecc396a18ae2a4546b8b42fefaaa5
+	source = http://www.kernel.org/pub/linux/kernel/v3.x/patch-3.14.10.xz
+	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.10-201407052031.patch
+	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.10-201407052031.patch.sig
+	sha256sums = 61558aa490855f42b6340d1a1596be47454909629327c49a5e4e10268065dffa
+	sha256sums = 5bfc8f5673d3f398019a4b5db737297098f249a802f7fd6dd9d880f175854921
+	sha256sums = 6657c8d39ceb41d5e48dc636ac3bc23f776a926012f296b2dc8f460967b5ee61
 	sha256sums = 64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde
-	sha256sums = c323d141f02b349ac5b37c744e0689c98dc698be81c7c974b182983b8073b03d
-	sha256sums = 03422a0832c338430140b68d542d6eb8afa4f999c97969ccca420a72780eef98
+	sha256sums = e93bcbbd4568449e771f420ddd281a797b8df92ff265d59f849c3f53172fd95e
+	sha256sums = 238f1499e7b6669b199e85cc334e01c9240665d65647b2ea0c30c230b88ac714
 	sha256sums = SKIP
 
 pkgname = linux-grsrv
@@ -31,6 +31,7 @@ pkgname = linux-grsrv
 	depends = mkinitcpio>=0.9
 	optdepends = crda: to set the correct wireless channels of your country
 	optdepends = linux-firmware: when having some hardware needing special firmware
+	optdepends = paxd: automatically configure PAX exceptions
 	provides = linux
 	backup = etc/mkinitcpio.d/linux-grsrv.preset
 
