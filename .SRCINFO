@@ -1,6 +1,6 @@
 pkgbase = linux-grsrv
 	pkgver = 3.14.27
-	pkgrel = 3
+	pkgrel = 4
 	url = http://www.kernel.org
 	arch = i686
 	arch = x86_64
@@ -15,8 +15,8 @@ pkgbase = linux-grsrv
 	source = linux-grsrv.preset
 	source = https://www.kernel.org/pub/linux/kernel/v3.x/patch-3.14.27.xz
 	source = https://www.kernel.org/pub/linux/kernel/v3.x/patch-3.14.27.sign
-	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.27-201412280859.patch
-	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.27-201412280859.patch.sig
+	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.27-201412310752.patch
+	source = http://grsecurity.net/stable/grsecurity-3.0-3.14.27-201412310752.patch.sig
 	sha256sums = 61558aa490855f42b6340d1a1596be47454909629327c49a5e4e10268065dffa
 	sha256sums = SKIP
 	sha256sums = ea4d38035e1827d4aff2388a4eded405c33f7cdcceb022ace5035b8d6f982f59
@@ -24,7 +24,7 @@ pkgbase = linux-grsrv
 	sha256sums = 64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde
 	sha256sums = 5f84a4ff394444486d1715d5283383a8461ff089ed9b9fdc5dde2ed65531d21e
 	sha256sums = SKIP
-	sha256sums = 53e69e41da87186b2c033a0b053bece520b592a9d095075ec2b7f2a717c1baa0
+	sha256sums = 7d127679f02ae50b1016086596ef27b4511ed3e70c85a97d91195e3075c0f3ea
 	sha256sums = SKIP
 
 pkgname = linux-grsrv
