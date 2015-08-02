@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 3.14.33-3 Kernel Configuration
+# Linux/x86 3.14.48-2 Kernel Configuration
 #
 # CONFIG_64BIT is not set
 CONFIG_X86_32=y
@@ -503,6 +503,7 @@ CONFIG_HOTPLUG_CPU=y
 # CONFIG_BOOTPARAM_HOTPLUG_CPU0 is not set
 # CONFIG_DEBUG_HOTPLUG_CPU0 is not set
 # CONFIG_CMDLINE_BOOL is not set
+CONFIG_DEFAULT_MODIFY_LDT_SYSCALL=y
 CONFIG_ARCH_ENABLE_MEMORY_HOTPLUG=y
 
 #
@@ -4199,7 +4200,6 @@ CONFIG_DEBUG_KERNEL=y
 #
 # Memory Debugging
 #
-# CONFIG_DEBUG_PAGEALLOC is not set
 # CONFIG_DEBUG_OBJECTS is not set
 # CONFIG_SLUB_DEBUG_ON is not set
 # CONFIG_SLUB_STATS is not set

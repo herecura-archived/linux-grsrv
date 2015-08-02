@@ -9,7 +9,7 @@ pkgname=("linux$_kernelname" "linux$_kernelname-headers")
 _basekernel=3.14
 _patchver=48
 pkgver=$_basekernel
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -34,8 +34,8 @@ source=(
 sha256sums=(
 	'61558aa490855f42b6340d1a1596be47454909629327c49a5e4e10268065dffa'
 	'SKIP'
-	'e1722c65d251d7a77c342aeb9564fdc0792cbd3acda4aa165e4c2b87a7dbf731'
-	'46ac052b6d587e181150c9a4e65eff825fbf9717bbc7201fb90137895c729170'
+    'eaa02cda799dc790b5d37f192f797e281e4036b4b20f0dec32f3fe2c97eccf32'
+    'd2f6642db6d990244198167c9d95de68a9ccdcc5870b42a37af3979c1d8f2f93'
 	'64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde'
 )
 
@@ -54,7 +54,7 @@ if [ ${_patchver} -ne 0 ]; then
 fi
 
 _grsecver="3.1"
-_grsecdate="201507111210"
+_grsecdate="201508011611"
 
 # extra patches
 _extrapatches=(
@@ -62,7 +62,7 @@ _extrapatches=(
 	"http://grsecurity.net/stable/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
 )
 _extrapatchessums=(
-	'13277da6735f6184754f75dea92edf9ae7d33527cfb87bd3d9146fd327c5155e'
+	'dc19a705f6752983729034fe47401626fe5b3d40f326b1ed56b72a0ed1eec6c2'
 	'SKIP'
 )
 if [ ${#_extrapatches[@]} -ne 0 ]; then
@@ -139,8 +139,8 @@ build() {
 	####################
 	# stop here
 	# this is useful to configure the kernel
-	#msg "Stopping build"
-	#return 1
+    #msg "Stopping build"
+    #return 1
 	####################
 	# yes "" | make config
 	# build!
