@@ -6,10 +6,10 @@
 _kernelname=-grsrv
 pkgbase="linux$_kernelname"
 pkgname=("linux$_kernelname" "linux$_kernelname-headers")
-_basekernel=3.14
-_patchver=51
+_basekernel=4.1
+_patchver=6
 pkgver=$_basekernel
-pkgrel=1
+pkgrel=0.1
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -32,10 +32,10 @@ source=(
 	"linux$_kernelname.preset"
 )
 sha256sums=(
-	'61558aa490855f42b6340d1a1596be47454909629327c49a5e4e10268065dffa'
+	'caf51f085aac1e1cea4d00dbbf3093ead07b551fc07b31b2a989c05f8ea72d9f'
 	'SKIP'
-    'eaa02cda799dc790b5d37f192f797e281e4036b4b20f0dec32f3fe2c97eccf32'
-    'd2f6642db6d990244198167c9d95de68a9ccdcc5870b42a37af3979c1d8f2f93'
+    'ca85cff9db34a43113290f2b5f28d665d29d3f2d9efe16d5fddf4de593f36a4c'
+    'c13d343a7d6e641a4a8f41ab3f3fe7f0572ee5178bc254e8daab7425bace8201'
 	'64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde'
 )
 
@@ -48,21 +48,21 @@ if [ ${_patchver} -ne 0 ]; then
 		"https://www.kernel.org/pub/linux/kernel/v3.x/${_patchname}.sign"
 	)
 	sha256sums=( "${sha256sums[@]}"
-        '8c6a569868a0df5f895ed4095f4ccf406655358871b51d8d3955fe04a46c80a5'
+        '64e4deb16a279e233b0c91463b131bd0f3de6aabdb49efded8314bcf5dbfe070'
 		'SKIP'
 	)
 fi
 
 _grsecver="3.1"
-_grsecdate="201508181951"
+_grsecdate="201508181953"
 
 # extra patches
 _extrapatches=(
-	"http://grsecurity.net/stable/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch"
-	"http://grsecurity.net/stable/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
+	"http://grsecurity.net/test/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch"
+	"http://grsecurity.net/test/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
 )
 _extrapatchessums=(
-    'ce44e5f6c158deae8673772c18fa2f362f25ca5ba12caf0ea6ee4375147fe1ea'
+    '09e95197aae810d1d93d46e56dacfa978369d067cfd63737420587c5c33c42d4'
 	'SKIP'
 )
 if [ ${#_extrapatches[@]} -ne 0 ]; then
@@ -132,7 +132,7 @@ build() {
 	make prepare
 	# load configuration
 	# Configure the kernel. Replace the line below with one of your choice.
-	#make menuconfig # CLI menu for configuration
+    #make menuconfig # CLI menu for configuration
 	#make xconfig # X-based configuration
 	#make oldconfig # using old config from previous kernel version
 	# ... or manually edit .config
