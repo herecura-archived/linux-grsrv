@@ -9,7 +9,7 @@ pkgname=("linux$_kernelname" "linux$_kernelname-headers")
 _basekernel=4.3
 _patchver=3
 pkgver=$_basekernel
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -257,7 +257,7 @@ package_linux-grsrv-headers() {
 
 	# add headers
 	for header in `find -size +1c -name '*.h'`; do
-        if [[ "$header" =~ "/arch/" ]] && ! [[ "$header" =~ "/arch/x86/" ]]; then
+        if [[ "$header" =~ /arch/.*/ ]] && ! [[ "$header" =~ "/arch/x86/" ]]; then
             continue
         fi
 		mkdir -p "$pkgdir/usr/src/linux-$_kernver/$(dirname $header)"
@@ -266,7 +266,7 @@ package_linux-grsrv-headers() {
 
 	# copy in Kconfig files
 	for i in `find . -name "Kconfig*"`; do
-        if [[ "$i" =~ "/arch/" ]] && ! [[ "$i" =~ "/arch/x86/" ]]; then
+        if [[ "$i" =~ /arch/.*/ ]] && ! [[ "$i" =~ "/arch/x86/" ]]; then
             continue
         fi
 		mkdir -p "$pkgdir/usr/src/linux-$_kernver/$(echo $i | sed 's|/Kconfig.*||')"
