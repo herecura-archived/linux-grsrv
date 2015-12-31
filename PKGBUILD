@@ -9,7 +9,7 @@ pkgname=("linux$_kernelname" "linux$_kernelname-headers")
 _basekernel=4.3
 _patchver=3
 pkgver=$_basekernel
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -34,8 +34,8 @@ source=(
 sha256sums=(
     '4a622cc84b8a3c38d39bc17195b0c064d2b46945dfde0dae18f77b120bc9f3ae'
     'SKIP'
-    'dfb3c2ab38b9ffcaffd43a7b2764a63abf55d6ac751ccc17e92add6c28a6b8ac'
-    'c3c0a5e0e093ca8062421c230fa017b69bf2d316d6161d51c005b3c9c4d8de5d'
+    '394a9bcc15ef6d0ae0c15a75a53b5260b07aca6101a21dea90c53d198113aa5a'
+    'c8fe69f3bb483732b7a6d94695abaf10e3143cc69f3e886bc888767acabc9654'
     '64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde'
 )
 
@@ -54,7 +54,7 @@ if [ ${_patchver} -ne 0 ]; then
 fi
 
 _grsecver="3.1"
-_grsecdate="201512222129"
+_grsecdate="201512282134"
 
 # extra patches
 _extrapatches=(
@@ -62,7 +62,7 @@ _extrapatches=(
 	"http://grsecurity.net/test/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
 )
 _extrapatchessums=(
-    '59f2f5ee4e921a9f4a1601e7069eb46c768782441e678b873ddbfb607253ab67'
+    '8b4d18d5e443ab814ce1d4f2f5e3a189fdfcc69f93d550c5954fe6ba8a2db76f'
 	'SKIP'
 )
 if [ ${#_extrapatches[@]} -ne 0 ]; then
@@ -257,12 +257,18 @@ package_linux-grsrv-headers() {
 
 	# add headers
 	for header in `find -size +1c -name '*.h'`; do
+        if [[ "$header" =~ "/arch/" ]] && ! [[ "$header" =~ "/arch/x86/" ]]; then
+            continue
+        fi
 		mkdir -p "$pkgdir/usr/src/linux-$_kernver/$(dirname $header)"
 		cp -a $header "$pkgdir/usr/src/linux-$_kernver/$(dirname $header)"
 	done
 
 	# copy in Kconfig files
 	for i in `find . -name "Kconfig*"`; do
+        if [[ "$i" =~ "/arch/" ]] && ! [[ "$i" =~ "/arch/x86/" ]]; then
+            continue
+        fi
 		mkdir -p "$pkgdir/usr/src/linux-$_kernver/$(echo $i | sed 's|/Kconfig.*||')"
 		cp $i "$pkgdir/usr/src/linux-$_kernver/$i"
 	done
@@ -282,8 +288,15 @@ package_linux-grsrv-headers() {
 		esac
 	done
 
+    # add grsecurity gcc plugins
+    mkdir -p "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc"
+    cp -a tools/gcc/*.h "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
+    cp -a tools/gcc/Makefile "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
+    install -m644 tools/gcc/*.so "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
+    mkdir -p "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/size_overflow_plugin"
+    install -m644 tools/gcc/size_overflow_plugin/Makefile tools/gcc/size_overflow_plugin/*.so \
+        "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/size_overflow_plugin"
+
 	chown -R root:root "$pkgdir/usr/src/linux-$_kernver"
 	find "$pkgdir/usr/src/linux-$_kernver" -type d -exec chmod 755 {} \;
-	# remove unneeded architectures
-	rm -rf "$pkgdir/usr/src/linux-$_kernver/arch"/{alpha,arm,arm26,avr32,blackfin,cris,frv,h8300,ia64,m32r,m68k,m68knommu,mips,microblaze,mn10300,parisc,powerpc,ppc,s390,score,sh,sh64,sparc,sparc64,tile,um,v850,xtensa}
 }
