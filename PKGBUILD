@@ -7,9 +7,9 @@ _kernelname=-grsrv
 pkgbase="linux$_kernelname"
 pkgname=("linux$_kernelname" "linux$_kernelname-headers")
 _basekernel=4.5
-_patchver=3
+_patchver=4
 pkgver=$_basekernel
-pkgrel=6
+pkgrel=1
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -48,13 +48,13 @@ if [ ${_patchver} -ne 0 ]; then
         "https://www.kernel.org/pub/linux/kernel/v4.x/${_patchname}.sign"
     )
     sha256sums=( "${sha256sums[@]}"
-        '02a1a3fb190031130f6a304a1d3ebb72ce0b4e6dcc608c9e423780e4df10dec7'
+        '6a9cfe691ac77346c48b7f83375a1880ebb379594de1000acad45da45d711e42'
         'SKIP'
     )
 fi
 
 _grsecver="3.1"
-_grsecdate="201605110659"
+_grsecdate="201605112030"
 
 # extra patches
 _extrapatches=(
@@ -62,7 +62,7 @@ _extrapatches=(
     "http://grsecurity.net/test/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
 )
 _extrapatchessums=(
-    '1ffd7937c961da6d7264cef3f4eed4949618d92d25974ede93489228094163b2'
+    '0403703a5f41aca57b8033cff95b61ab3dd915c8f8903ddeef6b617876525a19'
     'SKIP'
 )
 if [ ${#_extrapatches[@]} -ne 0 ]; then
