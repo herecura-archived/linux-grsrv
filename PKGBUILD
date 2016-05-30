@@ -9,7 +9,7 @@ pkgname=("linux$_kernelname" "linux$_kernelname-headers")
 _basekernel=4.5
 _patchver=5
 pkgver=$_basekernel
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 license=('GPL2')
 makedepends=('bc' 'kmod')
@@ -34,8 +34,8 @@ source=(
 sha256sums=(
     'a40defb401e01b37d6b8c8ad5c1bbab665be6ac6310cdeed59950c96b31a519c'
     'SKIP'
-    '323edfcac8a169b6f3167142641b738e80a7601527312dbe05012a8718846124'
-    '65783f7b1daafaef2dd35d59e8533d96aadfc87b919021afa176219a08555f76'
+    '5c4fdd81010fb6e35fa17eaeab177883018a9abe5e1f971f0bdd08a11425980d'
+    'c2bf45638851f3adba207adb25f9a23bf707521273de876b66655909b2dc150e'
     '64b2cf77834533ae7bac0c71936087857d8787d0e2a349037795eb7e42d23dde'
 )
 
@@ -54,7 +54,7 @@ if [ ${_patchver} -ne 0 ]; then
 fi
 
 _grsecver="3.1"
-_grsecdate="201605202102"
+_grsecdate="201605291201"
 
 # extra patches
 _extrapatches=(
@@ -62,7 +62,7 @@ _extrapatches=(
     "http://grsecurity.net/test/grsecurity-$_grsecver-$pkgver-$_grsecdate.patch.sig"
 )
 _extrapatchessums=(
-    '2b656e55cbdc36bbd9c053e50fe93568e558a15f536b03500e55e1b0ba726381'
+    'aae96046fefa884e71bb8ca23904cd131df9f751f586b829bc67d15d7fa1c664'
     'SKIP'
 )
 if [ ${#_extrapatches[@]} -ne 0 ]; then
@@ -257,15 +257,6 @@ package_linux-grsrv-headers() {
                 ;;
         esac
     done
-
-    # add grsecurity gcc plugins
-    mkdir -p "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc"
-    cp -a tools/gcc/*.h "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
-    cp -a tools/gcc/Makefile "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
-    install -m644 tools/gcc/*.so "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/"
-    mkdir -p "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/size_overflow_plugin"
-    install -m644 tools/gcc/size_overflow_plugin/Makefile tools/gcc/size_overflow_plugin/*.so \
-        "$pkgdir/usr/lib/modules/$_kernver/build/tools/gcc/size_overflow_plugin"
 
     chown -R root:root "$pkgdir/usr/src/linux-$_kernver"
     find "$pkgdir/usr/src/linux-$_kernver" -type d -exec chmod 755 {} \;
